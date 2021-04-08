@@ -49,7 +49,7 @@ for page in range(58):
 # Create df with all the collected data, adding timestamp
 df_player_att = pd.DataFrame(player_attributes)
 df_player_att.rename(columns={0: 'player', 1: 'team', 2: 'value', 3: 'points'}, inplace=True)
-df_player_att['timestamp'] = dt.datetime.now()
+df_player_att['timestamp'] = dt.datetime.now().date()
 df_player_att['timestamp'] = df_player_att['timestamp'].astype(str)
 
 # Upload data to gsheets
