@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Secrets
-secrets.py
+/usr/local/bin/python3.7 /Users/adriaferrer/Private_Repos/Fantasy_Football/fantasy-football/fantasticlibrary/secrets.py
