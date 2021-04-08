@@ -24,3 +24,37 @@ def PlayerAttributes(player_card):
     points = int(''.join(map(str, number)))
 
     return [name, team, valor_mercado, points]
+
+
+def get_player_name(player_card):
+    id_player = str(player_card).find('class="sr-only"')
+    name_player = \
+    str(player_card)[id_player + 1 + len('class="sr-only"'):id_player + 1 + len('class="sr-only"') + 25].split('<')[
+        0]
+    return name_player
+
+
+def get_transaction_cost(player_card):
+    id_trans = str(player_card).find('€')
+    cost_raw = str(player_card)[id_trans - 15:id_trans]
+    cost_number = re.findall(r"\d", cost_raw)
+    cost = int(''.join(map(str, cost_number)))
+
+    return cost
+
+def get_buyer_seller(player_card):
+    if move[2] == "market":
+        id_buyer = str(player_card).find('<!-- --><!-- --></a></user-link>')
+        buyer = str(player_card)[id_buyer - 20:id_buyer].split('>')[-1]
+        seller = "market"
+    elif move[2] == "transfers":
+        seller_soup = str(player_card)[id_trans - 1000:id_trans + 1000].split('<!-- --><!-- --></a>')
+        seller = seller_soup[0].split('>')[-1]
+
+        buyer_soup = str(player_card)[id_trans:id_trans + 1000].split('<!-- --><!-- --></a>')
+        if len(buyer_soup) > 1:
+            buyer = buyer_soup[1].split('>')[-1]
+        else:
+            buyer = "mercado"
+
+    return buyer, seller
