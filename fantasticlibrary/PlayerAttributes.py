@@ -42,7 +42,7 @@ def get_transaction_cost(player_card):
 
     return cost
 
-def get_buyer_seller(player_card):
+def get_buyer_seller(player_card, move):
     if move[2] == "market":
         id_buyer = str(player_card).find('<!-- --><!-- --></a></user-link>')
         buyer = str(player_card)[id_buyer - 20:id_buyer].split('>')[-1]
