@@ -61,10 +61,10 @@ for move in all_moves:
         name_player = pa.get_player_name(player_card)
 
         # Get transaction cost
-        cost = pa.get_transaction_cost(player_card)
+        cost, id_trans = pa.get_transaction_cost(player_card)
 
         # Get buyer and seller
-        buyer, seller = pa.get_buyer_seller(player_card, move)
+        buyer, seller = pa.get_buyer_seller(player_card, move, id_trans)
 
         # We create each row with the player name, the cost, the buyer and the seller
 

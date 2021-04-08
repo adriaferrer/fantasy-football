@@ -40,9 +40,9 @@ def get_transaction_cost(player_card):
     cost_number = re.findall(r"\d", cost_raw)
     cost = int(''.join(map(str, cost_number)))
 
-    return cost
+    return cost, id_trans
 
-def get_buyer_seller(player_card, move):
+def get_buyer_seller(player_card, move, id_trans):
     if move[2] == "market":
         id_buyer = str(player_card).find('<!-- --><!-- --></a></user-link>')
         buyer = str(player_card)[id_buyer - 20:id_buyer].split('>')[-1]
