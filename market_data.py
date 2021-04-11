@@ -1,3 +1,4 @@
+from pandas import DataFrame
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -55,7 +56,6 @@ for move in all_moves:
     all_player_cards = str(move[1]).split('player-card')[1::2]
 
     for player_card in all_player_cards:
-        movement_details = []
 
         # Get player name
         name_player = pa.get_player_name(player_card)
@@ -67,13 +67,11 @@ for move in all_moves:
         buyer, seller = pa.get_buyer_seller(player_card, move, id_trans)
 
         # We create each row with the player name, the cost, the buyer and the seller
-
         movement_details = [name_player, cost, buyer, seller, timestamp]
-
         market_data.append(movement_details)
 
 market_movements_df = pd.DataFrame(market_data)
-market_movements_df.rename(columns={0:"player", 1:"cost", 2:"Buyer", 3: "Seller", 4:"timestamp"}, inplace=True)
+market_movements_df.rename(columns={0: "player", 1: "cost", 2: "Buyer", 3: "Seller", 4: "timestamp"}, inplace=True)
 
 # Upload data
 gc = gspread.service_account(filename='/Users/adriaferrer/IDIADA_Repos/Moneyball/01_get_data/creds.json')
@@ -90,6 +88,5 @@ updated_market_movements = raw_market_movements.drop_duplicates()
 # Upload clean data
 sh2 = gc.open("Market_data_clean").sheet1
 sh2.update([updated_market_movements.columns.values.tolist()] + updated_market_movements.values.tolist())
-
 
 driver.quit()
