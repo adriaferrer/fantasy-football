@@ -130,3 +130,6 @@ dmypy.json
 
 # Secrets
 /usr/local/bin/python3.7 /Users/adriaferrer/Private_Repos/Fantasy_Football/fantasy-football/fantasticlibrary/secrets.py
+
+# Credentials
+/usr/local/bin/python3.7 /Users/adriaferrer/Private_Repos/Fantasy_Football/fantasy-football/creds.json
